@@ -32,4 +32,9 @@ const App = () => (
   </QueryClientProvider>
 );
 
-createRoot(document.getElementById("root")!).render(<App />);
+// Create or reuse a single root to avoid multiple createRoot calls (HMR/dev fast refresh)
+const container = document.getElementById("root")!;
+if (!(window as any).__REACT_ROOT__) {
+  (window as any).__REACT_ROOT__ = createRoot(container);
+}
+(window as any).__REACT_ROOT__.render(<App />);
