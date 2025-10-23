@@ -19,14 +19,19 @@ export default function SavedChats() {
       <div className="container py-6">
         <div className="mb-6 flex items-center justify-between">
           <h1 className="text-2xl font-bold">الدردشات المحفوظة</h1>
-          <Link to="/" className="text-primary hover:underline">العودة للمحادثة</Link>
+          <Link to="/" className="text-primary hover:underline">
+            العودة للمحادثة
+          </Link>
         </div>
         {threads.length === 0 ? (
           <p className="text-muted-foreground">لا توجد محادثات بعد.</p>
         ) : (
           <ul className="space-y-3">
             {threads.map((t) => (
-              <li key={t.id} className="bg-card border rounded-lg p-4 flex items-center gap-3">
+              <li
+                key={t.id}
+                className="bg-card border rounded-lg p-4 flex items-center gap-3"
+              >
                 <div className="flex-1">
                   <input
                     defaultValue={t.title}
@@ -35,7 +40,9 @@ export default function SavedChats() {
                       renameThread(userId, t.id, e.target.value || t.title);
                     }}
                   />
-                  <p className="text-xs text-muted-foreground">آخر تحديث: {new Date(t.updatedAt).toLocaleString()}</p>
+                  <p className="text-xs text-muted-foreground">
+                    آخر تحديث: {new Date(t.updatedAt).toLocaleString()}
+                  </p>
                 </div>
                 <button
                   className="text-destructive hover:underline"

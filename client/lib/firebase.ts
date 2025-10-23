@@ -1,9 +1,5 @@
 import { initializeApp, getApps, type FirebaseApp } from "firebase/app";
-import {
-  getAuth,
-  type Auth,
-  onAuthStateChanged,
-} from "firebase/auth";
+import { getAuth, type Auth, onAuthStateChanged } from "firebase/auth";
 import { getFirestore, type Firestore } from "firebase/firestore";
 
 export type FirebaseResources = {
@@ -42,7 +38,9 @@ export function getFirebase(): FirebaseResources | null {
   }
 }
 
-export function subscribeAuth(cb: (user: import("firebase/auth").User | null) => void) {
+export function subscribeAuth(
+  cb: (user: import("firebase/auth").User | null) => void,
+) {
   const fb = getFirebase();
   if (!fb) {
     cb(null);

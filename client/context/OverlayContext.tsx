@@ -1,7 +1,17 @@
-import React, { createContext, useContext, useEffect, useMemo, useRef, useState } from "react";
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 
 function isMobile() {
-  return typeof window !== "undefined" && window.matchMedia("(max-width: 767px)").matches;
+  return (
+    typeof window !== "undefined" &&
+    window.matchMedia("(max-width: 767px)").matches
+  );
 }
 
 type OverlayId = string | null;
@@ -79,14 +89,20 @@ export function OverlayProvider({ children }: { children: React.ReactNode }) {
     registryRef.current.set(id, el);
   };
 
-  const value = useMemo<OverlayContextType>(() => ({ openId, setOpen, register, isMobile: mobile }), [openId, mobile]);
+  const value = useMemo<OverlayContextType>(
+    () => ({ openId, setOpen, register, isMobile: mobile }),
+    [openId, mobile],
+  );
 
-  return <OverlayContext.Provider value={value}>{children}</OverlayContext.Provider>;
+  return (
+    <OverlayContext.Provider value={value}>{children}</OverlayContext.Provider>
+  );
 }
 
 export function useOverlayContext() {
   const ctx = useContext(OverlayContext);
-  if (!ctx) throw new Error("useOverlayContext must be used within OverlayProvider");
+  if (!ctx)
+    throw new Error("useOverlayContext must be used within OverlayProvider");
   return ctx;
 }
 

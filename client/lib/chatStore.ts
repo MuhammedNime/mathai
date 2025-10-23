@@ -35,7 +35,10 @@ export function saveThreads(userId: string, threads: ChatThread[]) {
   localStorage.setItem(key(userId), JSON.stringify(threads));
 }
 
-export function createThread(userId: string, title = "محادثة جديدة"): ChatThread {
+export function createThread(
+  userId: string,
+  title = "محادثة جديدة",
+): ChatThread {
   const thread: ChatThread = {
     id: uid(),
     title,
@@ -48,7 +51,11 @@ export function createThread(userId: string, title = "محادثة جديدة"):
   return thread;
 }
 
-export function addMessage(userId: string, threadId: string, msg: Omit<ChatMessage, "id" | "createdAt">) {
+export function addMessage(
+  userId: string,
+  threadId: string,
+  msg: Omit<ChatMessage, "id" | "createdAt">,
+) {
   const all = loadThreads(userId);
   const th = all.find((t) => t.id === threadId);
   if (!th) return;
